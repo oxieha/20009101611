@@ -1,0 +1,93 @@
+# 20009101611
+笔记
+主要学习了开源硬件的基本概念一级开发工具——arduino以及c语言
+尝试掌握了基础的编程语句
+pinMode(pin, mode)    数字IO口输入输出模式定义函数，pin表示为0～13， mode表示为INPUT或OUTPUT。
+digitalWrite(pin, value)    数字IO口输出电平定义函数，pin表示为0～13，value表示为HIGH或LOW。比如定义HIGH可以驱动LED。
+int digitalRead(pin)    数字IO口读输入电平函数，pin表示为0～13，value表示为HIGH或LOW。比如可以读数字传感器。
+模拟 I/O
+
+int analogRead(pin)    模拟IO口读函数，pin表示为0～5（Arduino Diecimila为0～5，Arduino nano为0～7）。比如可以读模拟传感器（10位AD，0～5V表示为0～1023）。
+analogWrite(pin, value) - PWM     数字IO口PWM输出函数，Arduino数字IO口标注了PWM的IO口可使用该函数，pin表示3, 5, 6, 9, 10, 11，value表示为0～255。比如可用于电机PWM调速或音乐播放。
+扩展 I/O
+
+shiftOut(dataPin, clockPin, bitOrder, value)    SPI外部IO扩展函数，通常使用带SPI接口的74HC595做8个IO扩展，dataPin为数据口，clockPin为时钟口，bitOrder为数据传输方向（MSBFIRST高位在前，LSBFIRST低位在前），value表示所要传送的数据（0～255），另外还需要一个IO口做74HC595的使能控制。
+unsigned long pulseIn(pin, value)    脉冲长度记录函数，返回时间参数（us），pin表示为0～13，value为HIGH或LOW。比如value为HIGH，那么当pin输入为高电平时，开始计时，当pin输入为低电平时，停止计时，然后返回该时间。
+时间函数
+
+unsigned long millis()   返回时间函数（单位ms），该函数是指，当程序运行就开始计时并返回记录的参数，该参数溢出大概需要50天时间。
+delay(ms)    延时函数（单位ms）。
+delayMicroseconds(us)    延时函数（单位us）。
+数学函数
+
+min(x, y)  求最小值
+max(x, y)  求最大值
+abs(x)   计算绝对值
+constrain(x, a, b)  约束函数，下限a，上限b，x必须在ab之间才能返回。
+map(value, fromLow, fromHigh, toLow, toHigh)    约束函数，value必须在fromLow与toLow之间和fromHigh与toHigh之间。
+pow(base, exponent)  开方函数，base的exponent次方。
+sq(x)     平方
+sqrt(x)   开根号
+三角函数
+
+sin(rad)
+cos(rad)
+tan(rad)
+随机数函数
+
+randomSeed(seed)   随机数端口定义函数，seed表示读模拟口analogRead(pin)函数 。
+long random(max)   随机数函数，返回数据大于等于0，小于max。
+long random(min, max)   随机数函数，返回数据大于等于min，小于max。
+外部中断函数
+
+attachInterrupt(interrupt, , mode)     外部中断只能用到数字IO口2和3，interrupt表示中断口初始0或1，表示一个功能函数，mode：LOW低电平中断，CHANGE有变化就中断，RISING上升沿中断，FALLING 下降沿中断。
+detachInterrupt(interrupt)    中断开关，interrupt=1 开，interrupt=0 关。
+中断使能函数
+
+interrupts()  使能中断
+noInterrupts()  禁止中断
+串口收发函数
+
+Serial.begin(speed)  串口定义波特率函数，speed表示波特率，如9600，19200等。
+int Serial.available()  判断缓冲器状态。
+int Serial.read()   读串口并返回收到参数。
+Serial.flush()    清空缓冲器。
+Serial.print(data)  串口输出数据。
+Serial.println(data)   串口输出数据并带回车符。
+
+ 
+
+官方库文件
+EEPROM - EEPROM读写程序库
+Ethernet - 以太网控制器程序库
+LiquidCrystal - LCD控制程序库
+Servo - 舵机控制程序库
+SoftwareSerial - 任何数字IO口模拟串口程序库
+Stepper - 步进电机控制程序库
+Wire - TWI/I2C总线程序库
+Matrix - LED矩阵控制程序库
+Sprite - LED矩阵图象处理控制程序库
+非官方库文件
+DateTime - a library for keeping track of the current date and time in software.
+Debounce - for reading noisy digital inputs (e.g. from buttons)
+Firmata - for communicating with applications on the computer using a standard serial protocol.
+GLCD - graphics routines for LCD based on the KS0108 or equivalent chipset.
+LCD - control LCDs (using 8 data lines)
+LCD 4 Bit - control LCDs (using 4 data lines)
+LedControl - for controlling LED matrices or seven-segment displays with a MAX7221 or MAX7219.
+LedControl - an alternative to the Matrix library for driving multiple LEDs with Maxim chips.
+Messenger - for processing text-based messages from the computer
+Metro - help you time actions at regular intervals
+MsTimer2 - uses the timer 2 interrupt to trigger an action every N milliseconds.
+OneWire - control devices (from Dallas Semiconductor) that use the One Wire protocol.
+PS2Keyboard - read characters from a PS2 keyboard.
+Servo - provides software support for Servo motors on any pins.
+Servotimer1 - provides hardware support for Servo motors on pins 9 and 10
+Simple Message System - send messages between Arduino and the computer
+SSerial2Mobile - send text messages or emails using a cell phone (via AT commands over software serial)
+TextString - handle strings
+TLC5940 - 16 channel 12 bit PWM controller.
+X10 - Sending X10 signals over AC power lines
+————————————————
+版权声明：本文为CSDN博主「绿疏忽」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/ufryyfdf/article/details/83989057
